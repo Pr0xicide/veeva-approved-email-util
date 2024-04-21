@@ -1,6 +1,5 @@
+const util  = require('../src/general/main')
 const { TYPES } = require('../src/linter/token/type')
-const { GRADE } = require('../src/linter/logger')
-const util = require('../veeva-email-util')
 
 test('Get veeva tokens', () => {
   const srcCode = '{{accLname}}'

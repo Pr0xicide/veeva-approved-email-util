@@ -1,6 +1,6 @@
 {
   "name": "veeva-approved-email-util",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Veeva approved email (VAE) library of JS functions to be used for various VAE applications.",
   "license": "MIT",
   "author": "Jayvin Duong",

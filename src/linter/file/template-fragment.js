@@ -1,4 +1,4 @@
-const util = require('../../../veeva-email-util')
+const util = require('../../general/main')
 const { TYPES } = require('../token/type')
 
 const VALID_TOKEN_TYPES = [TYPES.CONTENT]
