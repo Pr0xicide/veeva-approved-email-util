@@ -1,6 +1,6 @@
 # Veeva Approved Email Utility Functions
 
-[![npm (scoped)](https://img.shields.io/badge/npm-v0.2.0-blue)](https://github.com/Pr0xicide/veeva-approved-email-util)
+[![npm (scoped)](https://img.shields.io/badge/npm-v0.2.1-blue)](https://github.com/Pr0xicide/veeva-approved-email-util)
 
 This repo contains a small library of JS functions to be used for the development of Veeva Approved Emails (VAEs) applications and automation/developer tools.
 
