@@ -1,6 +1,6 @@
 const { TYPES } = require('./type')
 const { GRADE, createLogMessage } = require('../logger')
-const { getDropdownOptions } = require('../../../veeva-email-util')
+const { getDropdownOptions } = require('../../general/main')
 
 const REGEX_DROPDOWN = /\{\{customText\[(.*?)\]\}\}/g
 const REGEX_HTML_TAGS = /<\/?[^>]+(>|$)/g;

@@ -8,10 +8,16 @@ This repo contains a small library of JS functions to be used for the developmen
 
 ### Installation
 
-Include this package in your developer dependencies by running:
+Simply run the following command by running:
 
 ```bash
 npm i veeva-approved-email-util
+```
+
+Then include the package in your files.
+
+```JS
+const vaeUtil = require('veeva-approved-email-util')
 ```
 
 ### Usage
@@ -20,7 +26,7 @@ Refer to the [wiki](https://github.com/Pr0xicide/veeva-approved-email-util/wiki)
 
 ## Tests
 
-All unit tests for this library uses [jest](https://jestjs.io/).
+All unit tests for this library uses [jest](https://jestjs.io/) are stored in the `tests` folder.
 
 ## Additional Links
 

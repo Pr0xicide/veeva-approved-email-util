@@ -21,7 +21,7 @@ const isValid = (sourceCode) => {
     // Check for invalid tokens.
     if (!VALID_TOKEN_TYPES.includes(type)) invalidTokens.push(token)
   })
-
+  
   return invalidTokens.length === 0 ? true : invalidTokens
 }
 
