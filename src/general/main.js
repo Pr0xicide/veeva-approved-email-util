@@ -68,14 +68,19 @@ const buildDropdownToken = (options) => {
   if (options.length === 0) return false
   else if (options instanceof Array === false) return false
 
-  // Build dropdown token.
   let dropdown = `{{customText[`
-  for (let i = 0; i < options.length; i++) {    
-    if (options[i] !== options[options.length - 1]) dropdown += `${options[i]}|`
-    else {
-      dropdown += `${options[i]}]}}`
+
+  // Build dropdown token.
+  for (let i = 0; i < options.length; i++) {
+    dropdown += `${options[i]}`
+
+    // Append delimeter for more dropdown options.
+    if (i !== options.length - 1) {
+      dropdown += `|`
     }
   }
+
+  dropdown += ']}}'
 
   return dropdown
 }
@@ -98,5 +103,5 @@ module.exports = {
   getVeevaTokens: getVeevaTokens,
   determineTokenType: determineTokenType,
   buildDropdownToken: buildDropdownToken,
-  getDropdownOptions: getDropdownOptions,  
+  getDropdownOptions: getDropdownOptions,
 }

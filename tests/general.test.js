@@ -1,4 +1,4 @@
-const util  = require('../src/general/main')
+const util = require('../src/general/main')
 const { TYPES } = require('../src/linter/token/type')
 
 test('Get veeva tokens', () => {
@@ -27,6 +27,7 @@ test('Build Veeva dropdown/picklist token', () => {
   expect(util.buildDropdownToken([])).toBe(false)
   expect(util.buildDropdownToken(123)).toBe(false)
   expect(util.buildDropdownToken(validOptions)).toBe(expected)
+  expect(util.buildDropdownToken(['', ''])).toBe('{{customText[|]}}')
 })
 
 test('Retrieving dropdown options in a dropdown token', () => {

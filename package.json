@@ -1,6 +1,6 @@
 {
   "name": "veeva-approved-email-util",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Veeva approved email (VAE) library of JS functions to be used for various VAE applications.",
   "license": "MIT",
   "author": "Jayvin Duong",
@@ -10,7 +10,7 @@
     "url": "https://github.com/Pr0xicide/veeva-approved-email-util.git"
   },  
   "scripts": {
-    "test": "jest",
+    "test": "jest --watch",
     "prepare": "husky"
   },
   "keywords": [
@@ -23,6 +23,6 @@
     "prettier": "^3.2.5"
   },
   "lint-staged": {
-    "*.{js}": "prettier --write"
-  }
+    "*.{js,md}": "prettier --write"
+  }  
 }
