@@ -10,7 +10,8 @@
     "url": "https://github.com/Pr0xicide/veeva-approved-email-util.git"
   },  
   "scripts": {
-    "test": "jest --watch",
+    "test": "jest",
+    "dev": "jest --watch",
     "prepare": "husky"
   },
   "keywords": [
