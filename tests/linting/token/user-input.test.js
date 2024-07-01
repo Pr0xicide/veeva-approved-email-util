@@ -19,16 +19,16 @@ const lint = (token) => {
 const validateTextInput = (token) => {
   return lintTextInput({
     line: 1,
-    token: CATEGORY_TYPES.USER_INPUT,
-    value: token,
+    category: CATEGORY_TYPES.USER_INPUT,
+    token: token,
   })
 }
 
 const validateDropdown = (token) => {
   return lintDropdown({
     line: 1,
-    token: CATEGORY_TYPES.USER_INPUT,
-    value: token,
+    category: CATEGORY_TYPES.USER_INPUT,
+    token: token,
   })
 }
 
