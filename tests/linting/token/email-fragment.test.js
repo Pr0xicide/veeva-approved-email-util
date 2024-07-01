@@ -4,8 +4,8 @@ const { lint: validate } = require('../../../lib/linting/token/email-fragment')
 
 const lint = (token) => {
   return validate({
-    type: CATEGORY_TYPES.EMAIL_FRAGMENT,
-    value: token,
+    category: CATEGORY_TYPES.EMAIL_FRAGMENT,
+    token: token,
   })
 }
 

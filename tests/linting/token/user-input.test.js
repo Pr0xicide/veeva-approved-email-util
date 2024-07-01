@@ -10,16 +10,16 @@ const {
 
 const lint = (token) => {
   return validate({
-    type: CATEGORY_TYPES.USER_INPUT,
+    category: CATEGORY_TYPES.USER_INPUT,
     line: 1,
-    value: token,
+    token: token,
   })
 }
 
 const validateTextInput = (token) => {
   return lintTextInput({
     line: 1,
-    type: CATEGORY_TYPES.USER_INPUT,
+    token: CATEGORY_TYPES.USER_INPUT,
     value: token,
   })
 }
@@ -27,7 +27,7 @@ const validateTextInput = (token) => {
 const validateDropdown = (token) => {
   return lintDropdown({
     line: 1,
-    type: CATEGORY_TYPES.USER_INPUT,
+    token: CATEGORY_TYPES.USER_INPUT,
     value: token,
   })
 }

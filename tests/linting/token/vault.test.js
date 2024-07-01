@@ -7,9 +7,9 @@ const { lint: validate } = require('../../../lib/linting/token/vault')
 
 const lint = (token) => {
   return validate({
-    type: CATEGORY_TYPES.VAULT,
+    category: CATEGORY_TYPES.VAULT,
     line: 1,
-    value: token,
+    token: token,
   })
 }
 
