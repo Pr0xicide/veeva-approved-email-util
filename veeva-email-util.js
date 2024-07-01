@@ -1,7 +1,7 @@
-const main = require('./src/main')
-const dropdowns = require('./src/dropdowns')
+const lint = require('./lib/linting/_export')
+const tokens = require('./lib/tokens/_export')
 
 module.exports = {
-  main,
-  dropdowns: dropdowns,
+  lint,
+  tokens,
 }
