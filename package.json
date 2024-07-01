@@ -1,6 +1,6 @@
 {
   "name": "veeva-approved-email-util",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Veeva Approved Email npm package of JavaScript functions to be used for various node scripts.",
   "license": "MIT",
   "author": "Jayvin Duong",
