@@ -1,0 +1,39 @@
+const { lint } = require('../../../lib/linting/file/email-template')
+const { GRADE } = require('../../../lib/linting/grading')
+const { CATEGORY_TYPES } = require('../../../lib/tokens/category')
+
+test('duplicate tokens', () => {
+  const veevaTokens = [
+    {
+      line: 1,
+      category: CATEGORY_TYPES.EMAIL_FRAGMENT,
+      token: '{{insertEmailFragments}}',
+    },
+    {
+      line: 10,
+      category: CATEGORY_TYPES.EMAIL_FRAGMENT,
+      token: '{{insertEmailFragments[1,2]}}',
+    },
+    {
+      line: 100,
+      category: CATEGORY_TYPES.TEMPLATE_FRAGMENT,
+      token: '{{emailTemplateFragment}}',
+    },
+    {
+      line: 200,
+      category: CATEGORY_TYPES.TEMPLATE_FRAGMENT,
+      token: '{{emailTemplateFragment}}',
+    },
+    {
+      line: 1,
+      category: CATEGORY_TYPES.UNSUBSCRIBE,
+      token: '{{unsubscribe_product_link}}',
+    },
+  ]
+
+  const logs = lint(veevaTokens)
+  expect(logs.length).toBe(4)
+  logs.forEach((log) => {
+    expect(log.grade).toBe(GRADE.ERROR)
+  })
+})
