@@ -1,9 +1,10 @@
 const {
   CATEGORY_TYPES,
   determineTokenCategory,
+  getTokenCategorySummary,
 } = require('../../lib/tokens/category')
 
-test('Invalid parameters', () => {
+test('Invalid parameters for determining token category', () => {
   expect(determineTokenCategory(true)).toBe(false)
   expect(determineTokenCategory(1232)).toBe(false)
   expect(determineTokenCategory('sdfsdf')).toBe(false)
@@ -178,4 +179,35 @@ test('Detecting user input tokens', () => {
     expect(category).toBeDefined()
     expect(category).toBe(CATEGORY_TYPES.USER_INPUT)
   })
+})
+
+test('Token category summary count', () => {
+  const veevaTokens = [
+    {
+      line: 1,
+      category: CATEGORY_TYPES.EMAIL_FRAGMENT,
+      token: '{{insertEmailFragments}}',
+    },
+    {
+      line: 1,
+      category: CATEGORY_TYPES.EMAIL_FRAGMENT,
+      token: '{{insertEmailFragments}}',
+    },
+    {
+      line: 1,
+      category: CATEGORY_TYPES.VAULT,
+      token: '{{$20}}',
+    },
+    {
+      line: 1,
+      category: CATEGORY_TYPES.UNSUBSCRIBE,
+      token: '{{unsubscribe_product_link}}',
+    },
+  ]
+
+  const categorySummary = getTokenCategorySummary(veevaTokens)
+  expect(categorySummary[CATEGORY_TYPES.EMAIL_FRAGMENT]).toBe(2)
+  expect(categorySummary[CATEGORY_TYPES.VAULT]).toBe(1)
+  expect(categorySummary[CATEGORY_TYPES.UNSUBSCRIBE]).toBe(1)
+  expect(categorySummary[CATEGORY_TYPES.SIGNATURE]).toBe(0)
 })
