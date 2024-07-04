@@ -57,8 +57,7 @@ test('invalid tokens categories', () => {
   const log = lint(veevaTokens)
   expect(log.length).toBe(veevaTokens.length)
   log.forEach((veevaToken) => {
-    const { grade } = veevaToken
-    expect(grade).toBe(GRADE.ERROR)
+    expect(veevaToken.getGrade()).toBe(GRADE.ERROR)
   })
 })
 
@@ -112,7 +111,6 @@ test('invalid tokens in supported token category', () => {
   const log = lint(veevaTokens)
   expect(log.length).toBe(veevaTokens.length)
   log.forEach((veevaToken) => {
-    const { grade, line } = veevaToken
-    expect(grade).toBe(GRADE.ERROR)
+    expect(veevaToken.getGrade()).toBe(GRADE.ERROR)
   })
 })
