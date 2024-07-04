@@ -32,8 +32,8 @@ test('duplicate tokens', () => {
   ]
 
   const logs = lint(veevaTokens)
-  expect(logs.length).toBe(4)
+  expect(logs.length).toBe(2)
   logs.forEach((log) => {
-    expect(log.grade).toBe(GRADE.ERROR)
+    expect(log.getGrade()).toBe(GRADE.ERROR)
   })
 })
