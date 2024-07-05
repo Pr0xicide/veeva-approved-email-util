@@ -1,6 +1,6 @@
 # Veeva Approved Email Utility Functions
 
-[![npm (scoped)](https://img.shields.io/badge/npm-v0.3.4-blue)](https://github.com/Pr0xicide/veeva-approved-email-util)
+[![NPM Version](https://img.shields.io/npm/v/veeva-approved-email-util.svg?style=flat)](https://github.com/Pr0xicide/veeva-approved-email-util) [![NPM Downloads](https://img.shields.io/npm/dt/veeva-approved-email-util.svg?style=flat)](https://www.npmjs.com/package/veeva-approved-email-util) [![Issues](https://img.shields.io/github/issues-raw/Pr0xicide/veeva-approved-email-util.svg?maxAge=25000)](https://github.com/Pr0xicide/veeva-approved-email-util/issues)
 
 This repo contains a small library of JS functions to be used for the development of Veeva rep-triggered emails (RTEs) applications and automation/developer tools.
 
