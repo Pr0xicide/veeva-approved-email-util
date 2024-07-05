@@ -1,6 +1,3 @@
-/**
- * Test suite for validating Veeva content tokens.
- */
 const { GRADE } = require('../../../lib/linting/grading')
 const { CATEGORY_TYPES } = require('../../../lib/tokens/category')
 const { lint: validate } = require('../../../lib/linting/token/content')
@@ -13,14 +10,14 @@ const lint = (token) => {
 }
 
 test('Short hand notation tokens', () => {
-  expect(lint('{{accTitle}}').grade).toBe(GRADE.PASS)
-  expect(lint('{{accFname}}').grade).toBe(GRADE.PASS)
-  expect(lint('{{accLname}}').grade).toBe(GRADE.PASS)
-  expect(lint('{{accCredentials}}').grade).toBe(GRADE.PASS)
-  expect(lint('{{userEmailAddress}}').grade).toBe(GRADE.PASS)
-  expect(lint('{{userName}}').grade).toBe(GRADE.PASS)
-  expect(lint('{{userPhoto}}').grade).toBe(GRADE.PASS)
-  expect(lint('{{parentCallDatetime}}').grade).toBe(GRADE.PASS)
+  expect(lint('{{accTitle}}').getGrade()).toBe(GRADE.PASS)
+  expect(lint('{{accFname}}').getGrade()).toBe(GRADE.PASS)
+  expect(lint('{{accLname}}').getGrade()).toBe(GRADE.PASS)
+  expect(lint('{{accCredentials}}').getGrade()).toBe(GRADE.PASS)
+  expect(lint('{{userEmailAddress}}').getGrade()).toBe(GRADE.PASS)
+  expect(lint('{{userName}}').getGrade()).toBe(GRADE.PASS)
+  expect(lint('{{userPhoto}}').getGrade()).toBe(GRADE.PASS)
+  expect(lint('{{parentCallDatetime}}').getGrade()).toBe(GRADE.PASS)
 
-  expect(lint('{{User.MobilePhone}}').grade).toBe(GRADE.PASS)
+  expect(lint('{{User.MobilePhone}}').getGrade()).toBe(GRADE.PASS)
 })
