@@ -12,7 +12,7 @@ See [repo release page](https://github.com/Pr0xicide/veeva-approved-email-util/r
 
 ### Installation
 
-Simply run the following command by running:
+Simply run the following command to install the npm package to your project:
 
 ```bash
 npm install veeva-approved-email-util
@@ -25,10 +25,6 @@ Refer to the [repo wiki](https://github.com/Pr0xicide/veeva-approved-email-util/
 ## Tests
 
 All unit tests for this library uses [jest](https://jestjs.io/) and are stored in the `tests` directory.
-
-## Additional Links
-
-- [Veeva approved email tokens list](https://crmhelp.veeva.com/doc/Content/CRM_topics/Multichannel/ApprovedEmail/ManageCreateContent/CreatingContent/ConfigTokens.htm)
 
 ## Author
 
