@@ -51,34 +51,42 @@ test('User input type detection', () => {
 })
 
 test('Standard user input tokens', () => {
-  expect(lint('{{customText}}').grade).toBe(GRADE.PASS)
-  expect(lint('{{customText:Required}}').grade).toBe(GRADE.PASS)
-  expect(lint('{{customRichText}}').grade).toBe(GRADE.PASS)
+  expect(lint('{{customText}}').getGrade()).toBe(GRADE.PASS)
+  expect(lint('{{customText:Required}}').getGrade()).toBe(GRADE.PASS)
+  expect(lint('{{customRichText}}').getGrade()).toBe(GRADE.PASS)
 })
 
 test('Text user input tokens', () => {
-  expect(validateTextInput('{{customText(10)}}').grade).toBe(GRADE.PASS)
-  expect(validateTextInput('{{customText(10|ddd)}}').grade).toBe(GRADE.PASS)
+  expect(validateTextInput('{{customText(10)}}').getGrade()).toBe(GRADE.PASS)
+  expect(validateTextInput('{{customText(10|ddd)}}').getGrade()).toBe(
+    GRADE.PASS
+  )
 
-  expect(validateTextInput('{{customText()}}').grade).toBe(GRADE.ERROR)
-  expect(validateTextInput('{{customText(txt|2|3)}}').grade).toBe(GRADE.ERROR)
-  expect(validateTextInput('{{customText(hi)}}').grade).toBe(GRADE.ERROR)
-  expect(validateTextInput('{{customText(-10)}}').grade).toBe(GRADE.ERROR)
-  expect(validateTextInput('{{customText(dfdf|ddd)}}').grade).toBe(GRADE.ERROR)
-  expect(validateTextInput('{{customText(-10|ddd)}}').grade).toBe(GRADE.ERROR)
+  expect(validateTextInput('{{customText()}}').getGrade()).toBe(GRADE.ERROR)
+  expect(validateTextInput('{{customText(txt|2|3)}}').getGrade()).toBe(
+    GRADE.ERROR
+  )
+  expect(validateTextInput('{{customText(hi)}}').getGrade()).toBe(GRADE.ERROR)
+  expect(validateTextInput('{{customText(-10)}}').getGrade()).toBe(GRADE.ERROR)
+  expect(validateTextInput('{{customText(dfdf|ddd)}}').getGrade()).toBe(
+    GRADE.ERROR
+  )
+  expect(validateTextInput('{{customText(-10|ddd)}}').getGrade()).toBe(
+    GRADE.ERROR
+  )
 })
 
 test('Dropdown input token syntax', () => {
-  expect(validateDropdown('{{customText[1|2]}}').grade).toBe(GRADE.PASS)
+  expect(validateDropdown('{{customText[1|2]}}').getGrade()).toBe(GRADE.PASS)
 
-  expect(validateDropdown('{{customText]}}').grade).toBe(GRADE.ERROR)
-  expect(validateDropdown('{{customText[}}').grade).toBe(GRADE.ERROR)
-  expect(validateDropdown('{{customText}}').grade).toBe(GRADE.ERROR)
-  expect(validateDropdown('{customText}}').grade).toBe(GRADE.ERROR)
-  expect(validateDropdown('{{customText}').grade).toBe(GRADE.ERROR)
-  expect(validateDropdown('{{customText[[}}').grade).toBe(GRADE.ERROR)
-  expect(validateDropdown('{{customText]]}}').grade).toBe(GRADE.ERROR)
-  expect(validateDropdown('{{customText[[]]}}').grade).toBe(GRADE.ERROR)
+  expect(validateDropdown('{{customText]}}').getGrade()).toBe(GRADE.ERROR)
+  expect(validateDropdown('{{customText[}}').getGrade()).toBe(GRADE.ERROR)
+  expect(validateDropdown('{{customText}}').getGrade()).toBe(GRADE.ERROR)
+  expect(validateDropdown('{customText}}').getGrade()).toBe(GRADE.ERROR)
+  expect(validateDropdown('{{customText}').getGrade()).toBe(GRADE.ERROR)
+  expect(validateDropdown('{{customText[[}}').getGrade()).toBe(GRADE.ERROR)
+  expect(validateDropdown('{{customText]]}}').getGrade()).toBe(GRADE.ERROR)
+  expect(validateDropdown('{{customText[[]]}}').getGrade()).toBe(GRADE.ERROR)
 
   expect(validateDropdown('{{customText[]}}').grade).toBe(GRADE.WARNING)
 })
@@ -93,7 +101,7 @@ test('Dropdown options are valid', () => {
   expect(validateDropdown('{{customText[{{accLname}}]}}').grade).toBe(
     GRADE.ERROR
   )
-  expect(validateDropdown('{{customText[1|]}}').grade).toBe(GRADE.ERROR)
+  expect(validateDropdown('{{customText[1|]}}').getGrade()).toBe(GRADE.ERROR)
   expect(validateDropdown('{{customText[{{customText[1]}}|2]}}').grade).toBe(
     GRADE.ERROR
   )
