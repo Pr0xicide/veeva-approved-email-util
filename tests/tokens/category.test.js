@@ -22,9 +22,14 @@ test('Detecting content tokens', () => {
     { token: '{{userPhoto}}' },
     { token: '{{parentCallDatetime}}' },
     { token: '{{customContent}}' },
+
+    { token: '{{Account.FirstName}}' },
     { token: '{{Account.Title}}' },
-    { token: '{{User.Phone}}' },
+    { token: '{{Approved_Document_vod.}}' },
+    { token: '{{Call2_vod.}}' },
+    { token: '{{User.Lastname}}' },
     { token: '{{User.Phone1}}' },
+    { token: '{{User_Detail_vod.}}' },
   ]
   determineTokenCategory(tokensArray)
 
