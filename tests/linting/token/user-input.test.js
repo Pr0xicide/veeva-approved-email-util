@@ -56,6 +56,7 @@ test('Standard user input tokens', () => {
   expect(lint('{{customRichText}}').getGrade()).toBe(GRADE.PASS)
 })
 
+// Input fields tests
 test('Text user input tokens', () => {
   expect(validateTextInput('{{customText(10)}}').getGrade()).toBe(GRADE.PASS)
   expect(validateTextInput('{{customText(10|ddd)}}').getGrade()).toBe(
@@ -76,6 +77,7 @@ test('Text user input tokens', () => {
   )
 })
 
+// Dropdown Tests
 test('Dropdown input token syntax', () => {
   expect(validateDropdown('{{customText[1|2]}}').getGrade()).toBe(GRADE.PASS)
 
@@ -91,17 +93,43 @@ test('Dropdown input token syntax', () => {
   expect(validateDropdown('{{customText[]}}').grade).toBe(GRADE.WARNING)
 })
 
-test('Dropdown options are valid', () => {
+test('Dropdown options containing website URLs messages', () => {
   expect(validateDropdown('{{customText[https://google.com]}}').grade).toBe(
     GRADE.WARNING
   )
+  expect(validateDropdown('{{customText[www.google.com]}}').grade).toBe(
+    GRADE.WARNING
+  )
+})
+
+test('Dropdown options containing HTML tags', () => {
+  expect(validateDropdown('{{customText[< 1 of...|> 2...]}}').grade).toBe(
+    GRADE.PASS
+  )
+
   expect(validateDropdown('{{customText[<sup>&reg;</sup>]}}').grade).toBe(
     GRADE.ERROR
   )
+  expect(validateDropdown('{{customText[<em>text]}}').grade).toBe(GRADE.ERROR)
+  expect(validateDropdown('{{customText[text</em>]}}').grade).toBe(GRADE.ERROR)
+  expect(validateDropdown('{{customText[<em>1|2]}}').grade).toBe(GRADE.ERROR)
+  expect(validateDropdown('{{customText[1</em>|2]}}').grade).toBe(GRADE.ERROR)
+  expect(validateDropdown('{{customText[1<br/>|2]}}').grade).toBe(GRADE.ERROR)
+})
+
+test('Dropdown options containing Veeva tokens', () => {
   expect(validateDropdown('{{customText[{{accLname}}]}}').grade).toBe(
     GRADE.ERROR
   )
+})
+
+test('Dropdown options containing blank options', () => {
+  expect(validateDropdown('{{customText[|]}}').getGrade()).toBe(GRADE.ERROR)
   expect(validateDropdown('{{customText[1|]}}').getGrade()).toBe(GRADE.ERROR)
+  expect(validateDropdown('{{customText[|2]}}').getGrade()).toBe(GRADE.ERROR)
+})
+
+test('Dropdown options containing another dropdown', () => {
   expect(validateDropdown('{{customText[{{customText[1]}}|2]}}').grade).toBe(
     GRADE.ERROR
   )
