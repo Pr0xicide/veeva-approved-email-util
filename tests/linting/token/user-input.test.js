@@ -117,7 +117,13 @@ test('Dropdown options containing HTML tags', () => {
   expect(validateDropdown('{{customText[1<br/>|2]}}').grade).toBe(GRADE.ERROR)
 })
 
-test('Dropdown options containing Veeva tokens', () => {
+test('Dropdown options containing curly "{}" brackets}', () => {
+  expect(validateDropdown('{{customText[{}]}}').grade).toBe(GRADE.ERROR)
+  expect(validateDropdown('{{customText[}}]}}').grade).toBe(GRADE.ERROR)
+  expect(validateDropdown('{{customText[{{]}}').grade).toBe(GRADE.ERROR)
+  expect(validateDropdown('{{customText[{{accLname]}}').grade).toBe(GRADE.ERROR)
+  expect(validateDropdown('{{customText[}}]}}').grade).toBe(GRADE.ERROR)
+  expect(validateDropdown('{{customText[accLname}}]}}').grade).toBe(GRADE.ERROR)
   expect(validateDropdown('{{customText[{{accLname}}]}}').grade).toBe(
     GRADE.ERROR
   )
@@ -130,7 +136,13 @@ test('Dropdown options containing blank options', () => {
 })
 
 test('Dropdown options containing another dropdown', () => {
+  expect(validateDropdown('{{customText[{{customText[1|2]}}').grade).toBe(
+    GRADE.ERROR
+  )
   expect(validateDropdown('{{customText[{{customText[1]}}|2]}}').grade).toBe(
+    GRADE.ERROR
+  )
+  expect(validateDropdown('{{customText[1|{{customText[2]}}]}}').grade).toBe(
     GRADE.ERROR
   )
 })
