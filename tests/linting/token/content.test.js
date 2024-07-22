@@ -10,7 +10,7 @@ const lint = (token) => {
   })
 }
 
-test('Short hand notation tokens', () => {
+test('Valid standard content tokens', () => {
   expect(lint('{{accTitle}}').getGrade()).toBe(GRADE.PASS)
   expect(lint('{{accFname}}').getGrade()).toBe(GRADE.PASS)
   expect(lint('{{accLname}}').getGrade()).toBe(GRADE.PASS)
@@ -20,6 +20,27 @@ test('Short hand notation tokens', () => {
   expect(lint('{{userPhoto}}').getGrade()).toBe(GRADE.PASS)
   expect(lint('{{parentCallDatetime}}').getGrade()).toBe(GRADE.PASS)
   expect(lint('{{timeZone}}').getGrade()).toBe(GRADE.PASS)
+})
+
+test('Invalid standard content tokens', () => {
+  expect(lint('{{acctitle}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{accfname}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{accsdfgdf}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{acccredentials}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{accMainCredentials}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{accCredential}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{username}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{userAdfgdf}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{useremailaddress}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{userEmailAddress1}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{userEmailAddresses}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{userphoto}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{userPicture}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{userPic}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{parentcalldatetime}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{parentCallDatetimesdf}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{timezone}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{timeZone234}}').getGrade()).toBe(GRADE.ERROR)
 })
 
 test('Content tokens with invalid objects', () => {
