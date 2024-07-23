@@ -5,11 +5,20 @@ test('Invalid function parameters', () => {
   expect(invalidResults).toBe(false)
 })
 
-test('Getting Veeva tokens from string', () => {
+test('Getting Veeva tokens from a string', () => {
   const srcCode = '{{accLname}}'
-  const validResults = getVeevaTokens(srcCode)
-  expect(validResults.length).toBe(1)
-  expect(validResults[0].line).toBeDefined()
-  expect(validResults[0].token).toBeDefined()
-  expect(validResults[0].token).toBe(srcCode)
+  const tokenArray = getVeevaTokens(srcCode)
+  expect(tokenArray.length).toBe(1)
+  expect(tokenArray[0].line).toBeDefined()
+  expect(tokenArray[0].token).toBeDefined()
+  expect(tokenArray[0].token).toBe(srcCode)
+})
+
+test('Getting Veeva tokens from a multi-lined string', () => {
+  const srcCode = '{{1}}\n{{2}}\n\n{{4}}'
+  const tokenArray = getVeevaTokens(srcCode)
+  expect(tokenArray.length).toBe(3)
+  expect(tokenArray[0].line).toBe(1)
+  expect(tokenArray[1].line).toBe(2)
+  expect(tokenArray[2].line).toBe(4)
 })
