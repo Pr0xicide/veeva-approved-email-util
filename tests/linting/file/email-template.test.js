@@ -15,6 +15,11 @@ test('duplicate tokens', () => {
       token: '{{insertEmailFragments[1,2]}}',
     },
     {
+      line: 11,
+      category: CATEGORY_TYPES.EMAIL_FRAGMENT,
+      token: '{{insertEmailFragments[2,2]}}',
+    },
+    {
       line: 100,
       category: CATEGORY_TYPES.TEMPLATE_FRAGMENT,
       token: '{{emailTemplateFragment}}',
