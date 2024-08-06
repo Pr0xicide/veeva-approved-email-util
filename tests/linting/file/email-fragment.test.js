@@ -24,6 +24,16 @@ test('valid tokens categories', () => {
       category: CATEGORY_TYPES.UNSUBSCRIBE,
       token: '{{unsubscribe_product_link}}',
     },
+    {
+      line: 1,
+      category: CATEGORY_TYPES.CITATION,
+      token: '{{CitationStart}}',
+    },
+    {
+      line: 1,
+      category: CATEGORY_TYPES.FOOTNOTE,
+      token: '{{FootnoteStart}}',
+    },
   ]
 
   const log = lint(veevaTokens)

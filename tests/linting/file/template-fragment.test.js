@@ -52,6 +52,16 @@ test('invalid tokens categories', () => {
       category: CATEGORY_TYPES.TEMPLATE_FRAGMENT,
       token: '{{emailTemplateFragment}}',
     },
+    {
+      line: 1,
+      category: CATEGORY_TYPES.CITATION,
+      token: '{{CitationStart}}',
+    },
+    {
+      line: 1,
+      category: CATEGORY_TYPES.FOOTNOTE,
+      token: '{{FootnoteStart}}',
+    },
   ]
 
   const log = lint(veevaTokens)

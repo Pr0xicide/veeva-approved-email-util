@@ -40,6 +40,47 @@ test('Detecting content tokens', () => {
   })
 })
 
+test('Detecting citation tokens', () => {
+  const tokensArray = [
+    { token: '{{CitationNumber}}' },
+    { token: '{{CitationNumber[1]}}' },
+    { token: '{{CitationNumber[a]}}' },
+    { token: '{{CitationNumber<a>}}' },
+    { token: '{{CitationStart}}' },
+    { token: '{{CitationEnd}}' },
+    { token: '{{CitationSummaryStart}}' },
+    { token: '{{CitationSummaryEnd}}' },
+    { token: '{{InsertCitationSummaries}}' },
+    { token: '{{InsertCitations}}' },
+  ]
+  determineTokenCategory(tokensArray)
+
+  tokensArray.forEach((token) => {
+    const { category } = token
+    expect(category).toBeDefined()
+    expect(category).toBe(CATEGORY_TYPES.CITATION)
+  })
+})
+
+test('Detecting footnote tokens', () => {
+  const tokensArray = [
+    { token: '{{FootnoteSymbol}}' },
+    { token: '{{FootnoteSymbol[*]}}' },
+    { token: '{{FootnoteSymbol[a]}}' },
+    { token: '{{FootnoteSymbol<a>}}' },
+    { token: '{{FootnoteStart}}' },
+    { token: '{{FootnoteEnd}}' },
+    { token: '{{InsertFootnotes}}' },
+  ]
+  determineTokenCategory(tokensArray)
+
+  tokensArray.forEach((token) => {
+    const { category } = token
+    expect(category).toBeDefined()
+    expect(category).toBe(CATEGORY_TYPES.FOOTNOTE)
+  })
+})
+
 test('Detecting consent tokens', () => {
   const tokensArray = [
     { token: '{{insertConsentLines}}' },

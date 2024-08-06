@@ -2,6 +2,22 @@ const { lint } = require('../../../lib/linting/file/email-template')
 const { GRADE } = require('../../../lib/linting/grading')
 const { CATEGORY_TYPES } = require('../../../lib/tokens/category')
 
+test('invalid tokens categories', () => {
+  const veevaTokens = [
+    {
+      line: 1,
+      category: CATEGORY_TYPES.CITATION,
+      token: '{{insertEmailFragments}}',
+    },
+  ]
+
+  const logs = lint(veevaTokens)
+  expect(logs.length).toBe(1)
+  logs.forEach((log) => {
+    expect(log.getGrade()).toBe(GRADE.ERROR)
+  })
+})
+
 test('duplicate tokens', () => {
   const veevaTokens = [
     {
