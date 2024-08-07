@@ -71,7 +71,7 @@ test('invalid tokens categories', () => {
   })
 })
 
-test('valid tokens in supported token category', () => {
+test('supported tokens', () => {
   const veevaTokens = [
     {
       line: 1,
@@ -89,7 +89,7 @@ test('valid tokens in supported token category', () => {
   expect(log.length).toBe(0)
 })
 
-test('invalid tokens in supported token category', () => {
+test('unsupported tokens', () => {
   const veevaTokens = [
     {
       line: 1,
