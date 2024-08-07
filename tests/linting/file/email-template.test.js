@@ -2,19 +2,34 @@ const { lint } = require('../../../lib/linting/file/email-template')
 const { GRADE } = require('../../../lib/linting/grading')
 const { CATEGORY_TYPES } = require('../../../lib/tokens/category')
 
-test('invalid tokens categories', () => {
+test('unsupported tokens', () => {
   const veevaTokens = [
     {
       line: 1,
+      category: CATEGORY_TYPES.FOOTNOTE,
+      token: '{{FootnoteSymbol[1]}}',
+    },
+    {
+      line: 1,
       category: CATEGORY_TYPES.CITATION,
-      token: '{{insertEmailFragments}}',
+      token: '{{CitationNumber[1]}}',
+    },
+    {
+      line: 1,
+      category: CATEGORY_TYPES.CITATION,
+      token: '{{CitationSummaryStart}}',
+    },
+    {
+      line: 1,
+      category: CATEGORY_TYPES.CITATION,
+      token: '{{CitationSummaryEnd}}',
     },
   ]
 
-  const logs = lint(veevaTokens)
-  expect(logs.length).toBe(1)
-  logs.forEach((log) => {
-    expect(log.getGrade()).toBe(GRADE.ERROR)
+  const log = lint(veevaTokens)
+  expect(log.length).toBe(veevaTokens.length)
+  log.forEach((veevaToken) => {
+    expect(veevaToken.getGrade()).toBe(GRADE.ERROR)
   })
 })
 
