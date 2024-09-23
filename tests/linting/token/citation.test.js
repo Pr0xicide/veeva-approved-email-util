@@ -9,7 +9,7 @@ const lint = (token) => {
   })
 }
 
-test('Standard footnote tokens syntax', () => {
+test('Standard citation tokens syntax', () => {
   expect(lint('{{CitationStart}}').getGrade()).toBe(GRADE.PASS)
   expect(lint('{{CitationEnd}}').getGrade()).toBe(GRADE.PASS)
   expect(lint('{{CitationSummaryStart}}').getGrade()).toBe(GRADE.PASS)
