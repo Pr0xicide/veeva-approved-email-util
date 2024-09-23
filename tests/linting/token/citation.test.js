@@ -17,3 +17,18 @@ test('Standard citation tokens syntax', () => {
   expect(lint('{{InsertCitationSummaries}}').getGrade()).toBe(GRADE.PASS)
   expect(lint('{{InsertCitations}}').getGrade()).toBe(GRADE.PASS)
 })
+
+test('Citation number tokens syntax', () => {
+  expect(lint('{{CitationNumber[1]}}').getGrade()).toBe(GRADE.PASS)
+  expect(lint('{{CitationNumber[11]}}').getGrade()).toBe(GRADE.PASS)
+
+  expect(lint('{{CitationNumber[}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{CitationNumber]}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{CitationNumber[]}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{CitationNumber[abc]}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{CitationNumber[abc1]}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{CitationNumber[1abc1]}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{CitationNumber[!]}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{CitationNumber[<>]}}').getGrade()).toBe(GRADE.ERROR)
+  expect(lint('{{CitationNumber[number two]}}').getGrade()).toBe(GRADE.ERROR)
+})
