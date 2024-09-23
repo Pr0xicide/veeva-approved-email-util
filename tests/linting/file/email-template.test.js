@@ -6,7 +6,9 @@ test('supported tokens', () => {
     '{{accLname}}',
     '{{insertEmailFragments}}',
     '{{emailTemplateFragment}}',
-    '{{customContent}}',
+    '{{InsertFootnotes}}',
+    '{{InsertCitations}}',
+    '{{InsertCitationSummaries}}',
   ]
 
   const log = lint(veevaTokens.join(' '))
@@ -19,7 +21,6 @@ test('unsupported tokens', () => {
     '{{CitationNumber[1]}}',
     '{{CitationSummaryStart}}',
     '{{CitationSummaryEnd}}',
-    '{{FakeToken}}',
   ]
 
   const log = lint(veevaTokens.join(' '))
@@ -37,6 +38,12 @@ test('duplicate tokens', () => {
     '{{emailTemplateFragment}}',
     '{{emailTemplateFragment}}', // duplicate
     '{{unsubscribe_product_link}}',
+    '{{InsertFootnotes}}',
+    // '{{InsertFootnotes}}', // duplicate
+    '{{InsertCitations}}',
+    // '{{InsertCitations}}', // duplicate
+    '{{InsertCitationSummaries}}',
+    // '{{InsertCitationSummaries}}', // duplicate
   ]
 
   const logs = lint(veevaTokens.join(' '))

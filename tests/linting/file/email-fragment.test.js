@@ -47,10 +47,11 @@ test('unsupported tokens', () => {
     '{{requiresReview}}',
     '{{insertEngageAndZoomJoinURL[]}}',
     '{{insertZoomDialInNumbers[]}}',
+    '{{customText[1|2]}}',
   ]
 
   const log = lint(veevaTokens.join(' '))
-  expect(log.length).toBe(5)
+  expect(log.length).toBe(veevaTokens.length)
   log.forEach((veevaToken) => {
     expect(veevaToken.getGrade()).toBe(GRADE.ERROR)
   })
