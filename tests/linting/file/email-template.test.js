@@ -30,24 +30,35 @@ test('unsupported tokens', () => {
   })
 })
 
-test('duplicate tokens', () => {
+test('duplicate token categories', () => {
   const veevaTokens = [
     '{{insertEmailFragments}}',
-    '{{insertEmailFragments[1,2]}}', // duplicate
-    '{{insertEmailFragments[2,2]}}', // duplicate
+    '{{insertEmailFragments[1,2]}}', //
+    '{{insertEmailFragments[2,2]}}', // duplicate category
     '{{emailTemplateFragment}}',
-    '{{emailTemplateFragment}}', // duplicate
+    '{{emailTemplateFragment}}', // duplicate category
     '{{unsubscribe_product_link}}',
-    '{{InsertFootnotes}}',
-    // '{{InsertFootnotes}}', // duplicate
-    '{{InsertCitations}}',
-    // '{{InsertCitations}}', // duplicate
-    '{{InsertCitationSummaries}}',
-    // '{{InsertCitationSummaries}}', // duplicate
   ]
 
   const logs = lint(veevaTokens.join(' '))
   expect(logs.length).toBe(2)
+  logs.forEach((log) => {
+    expect(log.getGrade()).toBe(GRADE.ERROR)
+  })
+})
+
+test('duplicate tokens', () => {
+  const veevaTokens = [
+    '{{InsertFootnotes}}',
+    '{{InsertFootnotes}}', // duplicate token
+    '{{InsertCitations}}',
+    '{{InsertCitations}}', // duplicate token
+    '{{InsertCitationSummaries}}',
+    '{{InsertCitationSummaries}}', // duplicate token
+  ]
+
+  const logs = lint(veevaTokens.join(' '))
+  expect(logs.length).toBe(3)
   logs.forEach((log) => {
     expect(log.getGrade()).toBe(GRADE.ERROR)
   })

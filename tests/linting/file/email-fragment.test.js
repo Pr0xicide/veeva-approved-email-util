@@ -7,8 +7,10 @@ test('supported tokens categories', () => {
     '{{addToCalendar}}',
     '{{$20}}',
     '{{unsubscribe_product_link}}',
-    '{{CitationStart}}',
     '{{FootnoteStart}}',
+    '{{FootnoteEnd}}',
+    '{{CitationStart}}',
+    '{{CitationEnd}}',
   ]
 
   const log = lint(veevaTokens.join(' '))
@@ -52,6 +54,23 @@ test('unsupported tokens', () => {
 
   const log = lint(veevaTokens.join(' '))
   expect(log.length).toBe(veevaTokens.length)
+  log.forEach((veevaToken) => {
+    expect(veevaToken.getGrade()).toBe(GRADE.ERROR)
+  })
+})
+
+test('duplicate tokens', () => {
+  const veevaTokens = [
+    '{{FootnoteStart}}',
+    '{{FootnoteStart}}', // duplicate token
+    '{{FootnoteEnd}}',
+    '{{FootnoteEnd}}', // duplicate token
+    '{{CitationStart}}',
+    '{{CitationStart}}', // duplicate token
+  ]
+
+  const log = lint(veevaTokens.join(' '))
+  expect(log.length).toBe(3)
   log.forEach((veevaToken) => {
     expect(veevaToken.getGrade()).toBe(GRADE.ERROR)
   })
